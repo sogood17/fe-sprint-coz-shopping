@@ -17,21 +17,26 @@ export default function Header() {
                         <h1 className='title'>COZ Shopping</h1>
                     </Link>
                 </div>
-                <div >
+                <div className='menu-img-wrap'>
                     <img className='menu-img' src='../hamburger.png' onClick={menuClick} alt='menu' />
+                    <div className={menu? 'hamburger-menu' : 'hamburger-menu menu-hide'} >
+                        <div className='menu_wrap menu_first'>
+                            <span className='menu-text'>OOO님, 안녕하세요!</span>
+                        </div>
+                        <div className='menu_wrap menu_border'>
+                            <Link className='menu-link' to='/products/list'>
+                                <img src='../menu_product_icon.png' /><span className='menu-text'>상품리스트 페이지</span>
+                            </Link>
+                        </div>
+                        <div className='menu_wrap menu_last'>
+                            <Link className='menu-link' to='/bookmark'>
+                            <img src='../menu_bookmark_icon.png' /><span className='menu-text'>북마크 페이지</span>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-                <div className={menu? 'hamburger-menu' : 'hamburger-menu munu-clicked'} >
-                    <span>OOO님 안녕하세요!</span>
-                    <hr></hr>
-                    <Link to='/products/list'>
-                        <span>상품리스트 페이지</span>
-                    </Link>
-                    <hr></hr>
-                    <Link to='/bookmark'>
-                        <span>북마크 페이지</span>
-                    </Link>
-                </div>
+                
               
 
         </header>
