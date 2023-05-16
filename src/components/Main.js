@@ -40,7 +40,6 @@ export default function Main() {
     useEffect(() => {getBookmarkData()}, [])
 
     const [bookmark, setBookmark] = useState(false);
-
     const bookmarkHandler = () => {
         setBookmark(!bookmark);
     }
