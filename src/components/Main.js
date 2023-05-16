@@ -36,7 +36,6 @@ export default function Main() {
         console.log('정상적으로 데이터를 가져왔습니다.')
     })
 
-
     useEffect(() => {getData()}, [])
     useEffect(() => {getBookmarkData()}, [])
 
