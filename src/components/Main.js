@@ -57,7 +57,7 @@ export default function Main() {
                 bookmarkHandler={bookmarkHandler}
                 />))}
             </div>
-            <h2>상품리스트</h2>
+            <h2>북마크리스트</h2>
             <div className='products-container'>
                 {bookMarkProducts.map((e)=>(<MainBookmark key={e.id} id={e.id}
                 title={e.title}
