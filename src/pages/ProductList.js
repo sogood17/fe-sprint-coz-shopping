@@ -123,13 +123,16 @@ export default function ProductList() {
             </ul>
             <div className='products-container'>
                 {currentProductsList.map((e)=>(<MainAllProducts key={e.id} id={e.id}
-                title={e.title}
+                title={e.type === 'Category'? '#'+e.title : e.type ==='Brand' ? e.brand_name : e.title}
                 img={e.brand_image_url !== null ? e.brand_image_url : e.image_url}
                 subTitle={e.sub_title}
                 price={e.price}
                 bookmark={bookmark}
                 bookmarkHandler={bookmarkHandler}
                 clickImg={clickImg}
+                discount={e.discountPercentage}
+                follower={e.follower}
+                type={e.type}
                 />))}
             </div>
         </main>
