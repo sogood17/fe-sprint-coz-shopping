@@ -8,13 +8,15 @@ import CategoryIcon from '../components/CategoryIcon';
 export default function ProductList() {
 
     const [allProductsList, setAllProductList] = useState([]);
-    
+    const [currentProductsList, setCurrentProductsList] =useState([]);
+
     const getData = () => axios
-    .get('http://cozshopping.codestates-seb.link/api/v1/products?count=8')
+    .get('http://cozshopping.codestates-seb.link/api/v1/products')
     .then((res)=> {
         const object =res.data;
-        console.log(object);
         setAllProductList(object);
+        setCurrentProductsList(object);
+        console.log(object);
         })
     .catch((err)=> {
         console.log(err);
@@ -67,6 +69,7 @@ export default function ProductList() {
         setCategoryClick(false);
         setExhibitionClick(false);
         setBrandClick(false);
+        setCurrentProductsList(allProductsList);
     }
     const productClick=() => {
         setAllClick(false);
@@ -74,6 +77,9 @@ export default function ProductList() {
         setCategoryClick(false);
         setExhibitionClick(false);
         setBrandClick(false);
+        setCurrentProductsList(()=> (
+            allProductsList.filter((e)=>e.type === 'Product')
+        ));
     }
     const categoryClick=() => {
         setAllClick(false);
@@ -81,6 +87,9 @@ export default function ProductList() {
         setCategoryClick(true);
         setExhibitionClick(false);
         setBrandClick(false);
+        setCurrentProductsList(()=> (
+            allProductsList.filter((e)=>e.type === 'Category')
+        ));
     }
     const exhibitionClick=() => {
         setAllClick(false);
@@ -88,6 +97,9 @@ export default function ProductList() {
         setCategoryClick(false);
         setExhibitionClick(true);
         setBrandClick(false);
+        setCurrentProductsList(()=> (
+            allProductsList.filter((e)=>e.type === 'Exhibition')
+        ));
     }
     const brandClick=() => {
         setAllClick(false);
@@ -95,9 +107,10 @@ export default function ProductList() {
         setCategoryClick(false);
         setExhibitionClick(false);
         setBrandClick(true);
+        setCurrentProductsList(()=> (
+            allProductsList.filter((e)=>e.type === 'Brand')
+        ));
     }
-
-//https://blog.naver.com/js_ups/222778852112 이 글을 확인할 것 . column
 
     return (
         <main className='main'>
@@ -109,7 +122,7 @@ export default function ProductList() {
                 <CategoryIcon categoryImg={'../brand_icon.png'} categoryTitle={'브랜드'} onClick={brandClick} isClicked={brandClicked} />
             </ul>
             <div className='products-container'>
-                {allProductsList.map((e)=>(<MainAllProducts key={e.id} id={e.id}
+                {currentProductsList.map((e)=>(<MainAllProducts key={e.id} id={e.id}
                 title={e.title}
                 img={e.brand_image_url !== null ? e.brand_image_url : e.image_url}
                 subTitle={e.sub_title}
